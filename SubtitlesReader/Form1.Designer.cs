@@ -44,6 +44,7 @@ namespace SubtitlesReader
             this.ContentVScrollBar = new System.Windows.Forms.VScrollBar();
             this.CorrectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.ShowTimeCheckBox = new System.Windows.Forms.CheckBox();
+            this.ShowLoadingSettingsCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.CorrectionNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,7 +154,9 @@ namespace SubtitlesReader
             // ShowTimeCheckBox
             // 
             this.ShowTimeCheckBox.AutoSize = true;
-            this.ShowTimeCheckBox.Location = new System.Drawing.Point(12, 60);
+            this.ShowTimeCheckBox.Checked = true;
+            this.ShowTimeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowTimeCheckBox.Location = new System.Drawing.Point(12, 64);
             this.ShowTimeCheckBox.Name = "ShowTimeCheckBox";
             this.ShowTimeCheckBox.Size = new System.Drawing.Size(79, 17);
             this.ShowTimeCheckBox.TabIndex = 10;
@@ -161,11 +164,25 @@ namespace SubtitlesReader
             this.ShowTimeCheckBox.UseVisualStyleBackColor = true;
             this.ShowTimeCheckBox.CheckedChanged += new System.EventHandler(this.ShowTimeCheckBox_CheckedChanged);
             // 
+            // ShowLoadingSettingsCheckBox
+            // 
+            this.ShowLoadingSettingsCheckBox.AutoSize = true;
+            this.ShowLoadingSettingsCheckBox.Checked = true;
+            this.ShowLoadingSettingsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowLoadingSettingsCheckBox.Location = new System.Drawing.Point(107, 64);
+            this.ShowLoadingSettingsCheckBox.Name = "ShowLoadingSettingsCheckBox";
+            this.ShowLoadingSettingsCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.ShowLoadingSettingsCheckBox.TabIndex = 11;
+            this.ShowLoadingSettingsCheckBox.Text = "Show Loading Settings";
+            this.ShowLoadingSettingsCheckBox.UseVisualStyleBackColor = true;
+            this.ShowLoadingSettingsCheckBox.CheckedChanged += new System.EventHandler(this.ShowLoadingSettingsCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 294);
+            this.Controls.Add(this.ShowLoadingSettingsCheckBox);
             this.Controls.Add(this.ShowTimeCheckBox);
             this.Controls.Add(this.CorrectionNumericUpDown);
             this.Controls.Add(this.ContentVScrollBar);
@@ -179,6 +196,7 @@ namespace SubtitlesReader
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.CorrectionNumericUpDown)).EndInit();
             this.ResumeLayout(false);
@@ -202,6 +220,7 @@ namespace SubtitlesReader
         private VScrollBar ContentVScrollBar;
         private NumericUpDown CorrectionNumericUpDown;
         private CheckBox ShowTimeCheckBox;
+        private CheckBox ShowLoadingSettingsCheckBox;
     }
 }
 

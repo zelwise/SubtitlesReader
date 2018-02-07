@@ -40,7 +40,9 @@ namespace SubtitlesReader
                     File1TextBox.Text,
                     File2TextBox.Text,
                     CorrectionNumericUpDown.Value.ToString(),
-                    _activePosition.ToString()
+                    _activePosition.ToString(),
+                    ShowTimeCheckBox.Checked.ToString(),
+                    ShowLoadingSettingsCheckBox.Checked.ToString()
                 });
         }
 
@@ -54,14 +56,17 @@ namespace SubtitlesReader
                 File2TextBox.Text = lines[1];
                 CorrectionNumericUpDown.Value = int.Parse(lines[2]);
                 _activePosition = int.Parse(lines[3]);
+                ShowTimeCheckBox.Checked = bool.Parse(lines[4]);
+                ShowLoadingSettingsCheckBox.Checked = bool.Parse(lines[5]);
 
 
                 LoadContent();
                 ShowLinesFor(_activePosition);
+                ShowHideSettings();
             }
             else
             {
-                File.WriteAllLines(path, new List<string> { "", "", "0", "0" });
+                File.WriteAllLines(path, new List<string> { "", "", "0", "0","true","true" });
                 _activePosition = 0;
             }
         }
@@ -200,6 +205,32 @@ namespace SubtitlesReader
         private void ShowTimeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             ShowLinesFor(_activePosition);
+        }
+
+        private void ShowLoadingSettingsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+                ShowHideSettings();
+        }
+
+        private void ShowHideSettings()
+        {
+            var visible = ShowLoadingSettingsCheckBox.Checked;
+
+            File1TextBox.Visible = visible;
+            File2TextBox.Visible = visible;
+            ChooseFile1Button.Visible = visible;
+            ChooseFile2Button.Visible = visible;
+            LoadButton.Visible = visible;
+            Size = new Size(Size.Width,visible ? 333 :280);
+
+            File1ContentTextBox.Location = new Point(File1ContentTextBox.Location.X, visible ? 83 : 23);
+            File2ContentTextBox.Location = new Point(File2ContentTextBox.Location.X, visible ? 189 : 129);
+
+            CorrectionNumericUpDown.Location = new Point(CorrectionNumericUpDown.Location.X, visible ? 83 : 23);
+            ContentVScrollBar.Location = new Point(ContentVScrollBar.Location.X, visible ? 109 : 49);
+
+            ShowLoadingSettingsCheckBox.Location = new Point(ShowLoadingSettingsCheckBox.Location.X, visible ? 64 : 4);
+            ShowTimeCheckBox.Location = new Point(ShowTimeCheckBox.Location.X, visible ? 64 : 4);
         }
     }
 }
