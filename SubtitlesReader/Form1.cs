@@ -61,7 +61,7 @@ namespace SubtitlesReader
             }
             else
             {
-                File.WriteAllLines(path,new List<string>{"","","0","0"});
+                File.WriteAllLines(path, new List<string> { "", "", "0", "0" });
                 _activePosition = 0;
             }
         }
@@ -109,21 +109,26 @@ namespace SubtitlesReader
 
         private void RenderItems(IEnumerable<SubtitleItem> items1, IEnumerable<SubtitleItem> items2)
         {
-            File1ContentTextBox.Text = string.Join(Environment.NewLine, items1.Select(i => i.TimeStringStart + "   " + i.Content));
-            File2ContentTextBox.Text = string.Join(Environment.NewLine, items2.Select(i => i.TimeStringStart + "   " + i.Content));
+            File1ContentTextBox.Text = string.Join(Environment.NewLine, items1.Select(RenderItem));
+            File2ContentTextBox.Text = string.Join(Environment.NewLine, items2.Select(RenderItem));
             //File1ContentTextBox.Text = string.Join(Environment.NewLine, items1.Select(i => i.Id.ToString("0000   ") + i.Content));
             //File2ContentTextBox.Text = string.Join(Environment.NewLine, items2.Select(i => i.Id.ToString("0000   ") + i.Content));
         }
 
+        private string RenderItem(SubtitleItem item)
+        {
+            return ShowTimeCheckBox.Checked ? item.TimeStringStart + "   " + item.Content : item.Content;
+        }
+
         private SubtitleFile File1 { get; set; }
         private SubtitleFile File2 { get; set; }
-        
+
         private void ContentVScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
             ShowLinesFor(e.NewValue);
         }
 
-        private const int LinesToShow = 5;
+        private const int LinesToShow = 3;
         private void ShowLinesFor(int position)
         {
             if (File1 != null && File2 != null)
@@ -152,11 +157,27 @@ namespace SubtitlesReader
         {
             ShowLinesFor(_activePosition);
         }
-        
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveConfig();
+        }
+
+        private void Content_ValueChanged(object sender, MouseEventArgs e)
+        {
+            if (e is HandledMouseEventArgs handledArgs)
+            {
+                handledArgs.Handled = true;
+                if (handledArgs.Delta > 0)
+                {
+                    ShowLinesFor(_activePosition - 1);
+                }
+                else
+                {
+                    ShowLinesFor(_activePosition + 1);
+                }
+            }
         }
 
         private void ScrollHandlerFunction_ValueChanged(object sender, MouseEventArgs e)
@@ -168,12 +189,17 @@ namespace SubtitlesReader
                 {
                     CorrectionNumericUpDown.Value += 1;
                 }
-                else if(CorrectionNumericUpDown.Value != CorrectionNumericUpDown.Minimum)
+                else if (CorrectionNumericUpDown.Value != CorrectionNumericUpDown.Minimum)
                 {
-                    CorrectionNumericUpDown.Value +=-1;
+                    CorrectionNumericUpDown.Value += -1;
                 }
-                
+
             }
+        }
+
+        private void ShowTimeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowLinesFor(_activePosition);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace SubtitlesReader
             this.File2ContentTextBox = new System.Windows.Forms.TextBox();
             this.ContentVScrollBar = new System.Windows.Forms.VScrollBar();
             this.CorrectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ShowTimeCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.CorrectionNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,29 +107,31 @@ namespace SubtitlesReader
             this.File1ContentTextBox.Multiline = true;
             this.File1ContentTextBox.Name = "File1ContentTextBox";
             this.File1ContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.File1ContentTextBox.Size = new System.Drawing.Size(485, 145);
+            this.File1ContentTextBox.Size = new System.Drawing.Size(485, 100);
             this.File1ContentTextBox.TabIndex = 5;
             this.File1ContentTextBox.WordWrap = false;
+            this.File1ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_ValueChanged);
             // 
             // File2ContentTextBox
             // 
             this.File2ContentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.File2ContentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.File2ContentTextBox.Location = new System.Drawing.Point(12, 231);
+            this.File2ContentTextBox.Location = new System.Drawing.Point(12, 189);
             this.File2ContentTextBox.Multiline = true;
             this.File2ContentTextBox.Name = "File2ContentTextBox";
             this.File2ContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.File2ContentTextBox.Size = new System.Drawing.Size(485, 145);
+            this.File2ContentTextBox.Size = new System.Drawing.Size(485, 100);
             this.File2ContentTextBox.TabIndex = 6;
             this.File2ContentTextBox.WordWrap = false;
+            this.File2ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_ValueChanged);
             // 
             // ContentVScrollBar
             // 
             this.ContentVScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ContentVScrollBar.Location = new System.Drawing.Point(500, 109);
             this.ContentVScrollBar.Name = "ContentVScrollBar";
-            this.ContentVScrollBar.Size = new System.Drawing.Size(45, 267);
+            this.ContentVScrollBar.Size = new System.Drawing.Size(45, 180);
             this.ContentVScrollBar.TabIndex = 7;
             this.ContentVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ContentVScrollBar_Scroll);
             // 
@@ -147,11 +150,23 @@ namespace SubtitlesReader
             this.CorrectionNumericUpDown.ValueChanged += new System.EventHandler(this.CorrectionNumericUpDown_ValueChanged);
             this.CorrectionNumericUpDown.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ScrollHandlerFunction_ValueChanged);
             // 
+            // ShowTimeCheckBox
+            // 
+            this.ShowTimeCheckBox.AutoSize = true;
+            this.ShowTimeCheckBox.Location = new System.Drawing.Point(12, 60);
+            this.ShowTimeCheckBox.Name = "ShowTimeCheckBox";
+            this.ShowTimeCheckBox.Size = new System.Drawing.Size(79, 17);
+            this.ShowTimeCheckBox.TabIndex = 10;
+            this.ShowTimeCheckBox.Text = "Show Time";
+            this.ShowTimeCheckBox.UseVisualStyleBackColor = true;
+            this.ShowTimeCheckBox.CheckedChanged += new System.EventHandler(this.ShowTimeCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 390);
+            this.ClientSize = new System.Drawing.Size(557, 294);
+            this.Controls.Add(this.ShowTimeCheckBox);
             this.Controls.Add(this.CorrectionNumericUpDown);
             this.Controls.Add(this.ContentVScrollBar);
             this.Controls.Add(this.File2ContentTextBox);
@@ -186,6 +201,7 @@ namespace SubtitlesReader
         private System.Windows.Forms.TextBox File2ContentTextBox;
         private VScrollBar ContentVScrollBar;
         private NumericUpDown CorrectionNumericUpDown;
+        private CheckBox ShowTimeCheckBox;
     }
 }
 
