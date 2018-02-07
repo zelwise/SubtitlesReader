@@ -140,6 +140,8 @@ namespace SubtitlesReader
             this.CorrectionNumericUpDown.Size = new System.Drawing.Size(45, 20);
             this.CorrectionNumericUpDown.TabIndex = 9;
             this.CorrectionNumericUpDown.ValueChanged += new System.EventHandler(this.CorrectionNumericUpDown_ValueChanged);
+            this.CorrectionNumericUpDown.MouseWheel += new MouseEventHandler(this.ScrollHandlerFunction_ValueChanged);
+
             // 
             // Form1
             // 

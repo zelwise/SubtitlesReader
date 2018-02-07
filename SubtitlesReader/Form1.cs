@@ -62,6 +62,7 @@ namespace SubtitlesReader
             else
             {
                 File.WriteAllLines(path,new List<string>{"","","0","0"});
+                _activePosition = 0;
             }
         }
 
@@ -103,6 +104,7 @@ namespace SubtitlesReader
             ContentVScrollBar.Maximum = new List<int> { File1.Items.Count - 1, File2.Items.Count - 1 }.Max();
             ContentVScrollBar.LargeChange = 10;
             ContentVScrollBar.SmallChange = 1;
+            CorrectionNumericUpDown.Increment = 1;
             ContentVScrollBar.Value = _activePosition;
         }
 
@@ -117,34 +119,58 @@ namespace SubtitlesReader
         private const int LinesToShow = 5;
         private void ShowLinesFor(int position)
         {
-            _activePosition = position;
-
-            int limit = LinesToShow / 2;
-
-            if (position <= limit)
+            if (File1 != null && File2 != null)
             {
-                position = limit;
+                _activePosition = position;
+
+                int limit = LinesToShow / 2;
+
+                if (position <= limit)
+                {
+                    position = limit;
+                }
+
+                var firstPost = position - CorrectionNumericUpDown.Value;
+                if (firstPost < limit)
+                {
+                    firstPost = limit;
+                }
+
+                File1ContentTextBox.Text = string.Join(Environment.NewLine,
+                    File1.Items.Where(i => i.Id >= firstPost - limit && i.Id <= firstPost + limit)
+                        .Select(i => i.Id.ToString("0000   ") + i.Content));
+                File2ContentTextBox.Text = string.Join(Environment.NewLine,
+                    File2.Items.Where(i => i.Id >= position - limit && i.Id <= position + limit)
+                        .Select(i => i.Id.ToString("0000   ") + i.Content));
             }
-            
-            var firstPost = position - CorrectionNumericUpDown.Value;
-            if (firstPost < limit)
-            {
-                firstPost = limit;
-            }
-            
-            File1ContentTextBox.Text = string.Join(Environment.NewLine, File1.Items.Where(i=> i.Id >= firstPost - limit && i.Id <= firstPost + limit).Select(i => i.Id.ToString("0000   ") + i.Content));
-            File2ContentTextBox.Text = string.Join(Environment.NewLine, File2.Items.Where(i => i.Id >= position - limit && i.Id <= position + limit).Select(i => i.Id.ToString("0000   ") + i.Content));
         }
 
         private void CorrectionNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-
+            ShowLinesFor(_activePosition);
         }
         
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveConfig();
+        }
+
+        private void ScrollHandlerFunction_ValueChanged(object sender, MouseEventArgs e)
+        {
+            if (e is HandledMouseEventArgs handledArgs)
+            {
+                handledArgs.Handled = true;
+                if ((handledArgs.Delta > 0) && CorrectionNumericUpDown.Value != CorrectionNumericUpDown.Maximum)
+                {
+                    CorrectionNumericUpDown.Value += 1;
+                }
+                else if(CorrectionNumericUpDown.Value != CorrectionNumericUpDown.Minimum)
+                {
+                    CorrectionNumericUpDown.Value +=-1;
+                }
+                
+            }
         }
     }
 }
