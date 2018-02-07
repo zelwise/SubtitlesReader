@@ -66,9 +66,14 @@ namespace SubtitlesReader
             }
             else
             {
-                File.WriteAllLines(path, new List<string> { "", "", "0", "0","true","true" });
+                File.WriteAllLines(path, new List<string> { "", "", "0", "0", "true", "true" });
                 _activePosition = 0;
             }
+
+            ContentVScrollBar.LargeChange = 1;
+            ContentVScrollBar.SmallChange = 1;
+            CorrectionNumericUpDown.Increment = 1;
+            ContentVScrollBar.Value = _activePosition;
         }
 
         private void ChooseFile1Button_Click(object sender, EventArgs e)
@@ -106,10 +111,6 @@ namespace SubtitlesReader
             File2 = SubtitleFileReader.ReadFile(File2TextBox.Text);
             RenderItems(File1.Items.Take(LinesToShow), File2.Items.Take(LinesToShow));
             ContentVScrollBar.Maximum = new List<int> { File1.Items.Count - 1, File2.Items.Count - 1 }.Max();
-            ContentVScrollBar.LargeChange = 10;
-            ContentVScrollBar.SmallChange = 1;
-            CorrectionNumericUpDown.Increment = 1;
-            ContentVScrollBar.Value = _activePosition;
         }
 
         private void RenderItems(IEnumerable<SubtitleItem> items1, IEnumerable<SubtitleItem> items2)
@@ -130,7 +131,10 @@ namespace SubtitlesReader
 
         private void ContentVScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            ShowLinesFor(e.NewValue);
+            if (e.NewValue != e.OldValue)
+            {
+                ShowLinesFor(e.NewValue);
+            }
         }
 
         private const int LinesToShow = 3;
@@ -138,6 +142,16 @@ namespace SubtitlesReader
         {
             if (File1 != null && File2 != null)
             {
+                if (position < 0)
+                {
+                    position = 0;
+                }
+
+                if (position > ContentVScrollBar.Maximum)
+                {
+                    position = ContentVScrollBar.Maximum;
+                }
+
                 _activePosition = position;
 
                 int limit = LinesToShow / 2;
@@ -169,23 +183,34 @@ namespace SubtitlesReader
             SaveConfig();
         }
 
-        private void Content_ValueChanged(object sender, MouseEventArgs e)
+        private void Content_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e is HandledMouseEventArgs handledArgs)
             {
                 handledArgs.Handled = true;
+                int newValue;
                 if (handledArgs.Delta > 0)
                 {
-                    ShowLinesFor(_activePosition - 1);
+                    newValue = _activePosition - 1;
+                    ShowLinesFor(newValue);
+                    if (newValue > 0 && newValue <= ContentVScrollBar.Minimum)
+                    {
+                        ContentVScrollBar.Value = newValue;
+                    }
                 }
                 else
                 {
-                    ShowLinesFor(_activePosition + 1);
+                    newValue = _activePosition + 1;
+                    ShowLinesFor(newValue);
+                    if (newValue >= -1 && newValue <= ContentVScrollBar.Maximum)
+                    {
+                        ContentVScrollBar.Value = newValue;
+                    }
                 }
             }
         }
 
-        private void ScrollHandlerFunction_ValueChanged(object sender, MouseEventArgs e)
+        private void CorrectionNumericUpDown_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e is HandledMouseEventArgs handledArgs)
             {
@@ -209,7 +234,7 @@ namespace SubtitlesReader
 
         private void ShowLoadingSettingsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-                ShowHideSettings();
+            ShowHideSettings();
         }
 
         private void ShowHideSettings()
@@ -221,7 +246,7 @@ namespace SubtitlesReader
             ChooseFile1Button.Visible = visible;
             ChooseFile2Button.Visible = visible;
             LoadButton.Visible = visible;
-            Size = new Size(Size.Width,visible ? 333 :280);
+            Size = new Size(Size.Width, visible ? 333 : 280);
 
             File1ContentTextBox.Location = new Point(File1ContentTextBox.Location.X, visible ? 83 : 23);
             File2ContentTextBox.Location = new Point(File2ContentTextBox.Location.X, visible ? 189 : 129);

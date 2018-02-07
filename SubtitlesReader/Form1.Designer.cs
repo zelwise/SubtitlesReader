@@ -111,7 +111,7 @@ namespace SubtitlesReader
             this.File1ContentTextBox.Size = new System.Drawing.Size(485, 100);
             this.File1ContentTextBox.TabIndex = 5;
             this.File1ContentTextBox.WordWrap = false;
-            this.File1ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_ValueChanged);
+            this.File1ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_MouseWheel);
             // 
             // File2ContentTextBox
             // 
@@ -125,7 +125,7 @@ namespace SubtitlesReader
             this.File2ContentTextBox.Size = new System.Drawing.Size(485, 100);
             this.File2ContentTextBox.TabIndex = 6;
             this.File2ContentTextBox.WordWrap = false;
-            this.File2ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_ValueChanged);
+            this.File2ContentTextBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Content_MouseWheel);
             // 
             // ContentVScrollBar
             // 
@@ -149,7 +149,7 @@ namespace SubtitlesReader
             this.CorrectionNumericUpDown.Size = new System.Drawing.Size(45, 20);
             this.CorrectionNumericUpDown.TabIndex = 9;
             this.CorrectionNumericUpDown.ValueChanged += new System.EventHandler(this.CorrectionNumericUpDown_ValueChanged);
-            this.CorrectionNumericUpDown.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ScrollHandlerFunction_ValueChanged);
+            this.CorrectionNumericUpDown.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.CorrectionNumericUpDown_MouseWheel);
             // 
             // ShowTimeCheckBox
             // 
