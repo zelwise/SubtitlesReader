@@ -1,0 +1,9 @@
+d:\GitProjects\SubtitlesReader\SubtitlesReader\bin\Debug\SubtitlesReader.exe.config
+d:\GitProjects\SubtitlesReader\SubtitlesReader\bin\Debug\SubtitlesReader.exe
+d:\GitProjects\SubtitlesReader\SubtitlesReader\bin\Debug\SubtitlesReader.pdb
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.csprojResolveAssemblyReference.cache
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.Form1.resources
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.Properties.Resources.resources
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.csproj.GenerateResource.Cache
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.exe
+d:\GitProjects\SubtitlesReader\SubtitlesReader\obj\Debug\SubtitlesReader.pdb
