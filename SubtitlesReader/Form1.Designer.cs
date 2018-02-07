@@ -48,9 +48,10 @@ namespace SubtitlesReader
             // 
             // ChooseFile1Button
             // 
-            this.ChooseFile1Button.Location = new System.Drawing.Point(396, 10);
+            this.ChooseFile1Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChooseFile1Button.Location = new System.Drawing.Point(410, 10);
             this.ChooseFile1Button.Name = "ChooseFile1Button";
-            this.ChooseFile1Button.Size = new System.Drawing.Size(88, 23);
+            this.ChooseFile1Button.Size = new System.Drawing.Size(84, 23);
             this.ChooseFile1Button.TabIndex = 0;
             this.ChooseFile1Button.Text = "Choose File 1";
             this.ChooseFile1Button.UseVisualStyleBackColor = true;
@@ -58,9 +59,10 @@ namespace SubtitlesReader
             // 
             // ChooseFile2Button
             // 
-            this.ChooseFile2Button.Location = new System.Drawing.Point(396, 39);
+            this.ChooseFile2Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChooseFile2Button.Location = new System.Drawing.Point(410, 39);
             this.ChooseFile2Button.Name = "ChooseFile2Button";
-            this.ChooseFile2Button.Size = new System.Drawing.Size(88, 23);
+            this.ChooseFile2Button.Size = new System.Drawing.Size(84, 23);
             this.ChooseFile2Button.TabIndex = 1;
             this.ChooseFile2Button.Text = "Choose File 2";
             this.ChooseFile2Button.UseVisualStyleBackColor = true;
@@ -68,20 +70,25 @@ namespace SubtitlesReader
             // 
             // File2TextBox
             // 
+            this.File2TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.File2TextBox.Location = new System.Drawing.Point(12, 38);
             this.File2TextBox.Name = "File2TextBox";
-            this.File2TextBox.Size = new System.Drawing.Size(378, 20);
+            this.File2TextBox.Size = new System.Drawing.Size(392, 20);
             this.File2TextBox.TabIndex = 2;
             // 
             // File1TextBox
             // 
+            this.File1TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.File1TextBox.Location = new System.Drawing.Point(12, 12);
             this.File1TextBox.Name = "File1TextBox";
-            this.File1TextBox.Size = new System.Drawing.Size(378, 20);
+            this.File1TextBox.Size = new System.Drawing.Size(392, 20);
             this.File1TextBox.TabIndex = 3;
             // 
             // LoadButton
             // 
+            this.LoadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadButton.Location = new System.Drawing.Point(500, 12);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(45, 46);
@@ -92,6 +99,8 @@ namespace SubtitlesReader
             // 
             // File1ContentTextBox
             // 
+            this.File1ContentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.File1ContentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.File1ContentTextBox.Location = new System.Drawing.Point(12, 83);
             this.File1ContentTextBox.Multiline = true;
@@ -100,8 +109,11 @@ namespace SubtitlesReader
             this.File1ContentTextBox.Size = new System.Drawing.Size(485, 145);
             this.File1ContentTextBox.TabIndex = 5;
             this.File1ContentTextBox.WordWrap = false;
+            // 
             // File2ContentTextBox
             // 
+            this.File2ContentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.File2ContentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.File2ContentTextBox.Location = new System.Drawing.Point(12, 231);
             this.File2ContentTextBox.Multiline = true;
@@ -110,8 +122,10 @@ namespace SubtitlesReader
             this.File2ContentTextBox.Size = new System.Drawing.Size(485, 145);
             this.File2ContentTextBox.TabIndex = 6;
             this.File2ContentTextBox.WordWrap = false;
+            // 
             // ContentVScrollBar
             // 
+            this.ContentVScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ContentVScrollBar.Location = new System.Drawing.Point(500, 109);
             this.ContentVScrollBar.Name = "ContentVScrollBar";
             this.ContentVScrollBar.Size = new System.Drawing.Size(45, 267);
@@ -120,6 +134,7 @@ namespace SubtitlesReader
             // 
             // CorrectionNumericUpDown
             // 
+            this.CorrectionNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CorrectionNumericUpDown.Location = new System.Drawing.Point(500, 83);
             this.CorrectionNumericUpDown.Name = "CorrectionNumericUpDown";
             this.CorrectionNumericUpDown.Size = new System.Drawing.Size(45, 20);
@@ -141,6 +156,7 @@ namespace SubtitlesReader
             this.Controls.Add(this.ChooseFile2Button);
             this.Controls.Add(this.ChooseFile1Button);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.CorrectionNumericUpDown)).EndInit();
