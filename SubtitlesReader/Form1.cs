@@ -99,13 +99,20 @@ namespace SubtitlesReader
         {
             File1 = SubtitleFileReader.ReadFile(File1TextBox.Text);
             File2 = SubtitleFileReader.ReadFile(File2TextBox.Text);
-            File1ContentTextBox.Text = string.Join(Environment.NewLine, File1.Items.Take(LinesToShow).Select(i => i.Id.ToString("0000   ") + i.Content));
-            File2ContentTextBox.Text = string.Join(Environment.NewLine, File2.Items.Take(LinesToShow).Select(i => i.Id.ToString("0000   ") + i.Content));
+            RenderItems(File1.Items.Take(LinesToShow), File2.Items.Take(LinesToShow));
             ContentVScrollBar.Maximum = new List<int> { File1.Items.Count - 1, File2.Items.Count - 1 }.Max();
             ContentVScrollBar.LargeChange = 10;
             ContentVScrollBar.SmallChange = 1;
             CorrectionNumericUpDown.Increment = 1;
             ContentVScrollBar.Value = _activePosition;
+        }
+
+        private void RenderItems(IEnumerable<SubtitleItem> items1, IEnumerable<SubtitleItem> items2)
+        {
+            File1ContentTextBox.Text = string.Join(Environment.NewLine, items1.Select(i => i.TimeStringStart + "   " + i.Content));
+            File2ContentTextBox.Text = string.Join(Environment.NewLine, items2.Select(i => i.TimeStringStart + "   " + i.Content));
+            //File1ContentTextBox.Text = string.Join(Environment.NewLine, items1.Select(i => i.Id.ToString("0000   ") + i.Content));
+            //File2ContentTextBox.Text = string.Join(Environment.NewLine, items2.Select(i => i.Id.ToString("0000   ") + i.Content));
         }
 
         private SubtitleFile File1 { get; set; }
@@ -136,12 +143,8 @@ namespace SubtitlesReader
                     firstPost = limit;
                 }
 
-                File1ContentTextBox.Text = string.Join(Environment.NewLine,
-                    File1.Items.Where(i => i.Id >= firstPost - limit && i.Id <= firstPost + limit)
-                        .Select(i => i.Id.ToString("0000   ") + i.Content));
-                File2ContentTextBox.Text = string.Join(Environment.NewLine,
-                    File2.Items.Where(i => i.Id >= position - limit && i.Id <= position + limit)
-                        .Select(i => i.Id.ToString("0000   ") + i.Content));
+                RenderItems(File1.Items.Where(i => i.Id >= firstPost - limit && i.Id <= firstPost + limit),
+                    File2.Items.Where(i => i.Id >= position - limit && i.Id <= position + limit));
             }
         }
 

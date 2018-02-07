@@ -136,12 +136,16 @@ namespace SubtitlesReader
             // 
             this.CorrectionNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CorrectionNumericUpDown.Location = new System.Drawing.Point(500, 83);
+            this.CorrectionNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.CorrectionNumericUpDown.Name = "CorrectionNumericUpDown";
             this.CorrectionNumericUpDown.Size = new System.Drawing.Size(45, 20);
             this.CorrectionNumericUpDown.TabIndex = 9;
             this.CorrectionNumericUpDown.ValueChanged += new System.EventHandler(this.CorrectionNumericUpDown_ValueChanged);
-            this.CorrectionNumericUpDown.MouseWheel += new MouseEventHandler(this.ScrollHandlerFunction_ValueChanged);
-
+            this.CorrectionNumericUpDown.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ScrollHandlerFunction_ValueChanged);
             // 
             // Form1
             // 
